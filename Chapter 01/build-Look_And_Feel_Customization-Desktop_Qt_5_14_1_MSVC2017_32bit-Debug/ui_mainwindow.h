@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -28,9 +29,12 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout_2;
+    QSpacerItem *horizontalSpacer_2;
     QLabel *logo;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *horizontalLayoutWidget_2;
     QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer_4;
     QWidget *loginForm;
     QVBoxLayout *verticalLayout;
     QSpacerItem *verticalSpacer_4;
@@ -43,6 +47,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QPushButton *loginButton;
     QSpacerItem *verticalSpacer_3;
+    QSpacerItem *horizontalSpacer_5;
     QWidget *topPanel;
     QHBoxLayout *horizontalLayout;
     QLabel *currentDateTime;
@@ -54,8 +59,11 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 499);
-        MainWindow->setStyleSheet(QString::fromUtf8("#centralwidget { background: rgba(32,80,96,100);}\n"
+        MainWindow->resize(800, 600);
+        MainWindow->setStyleSheet(QString::fromUtf8("#centralwidget { \n"
+"background: rgba(32,80,96,100);\n"
+"border-image: url(:/images/login_bg.png);\n"
+"}\n"
 "\n"
 "#topPanel{\n"
 "background:\n"
@@ -83,31 +91,40 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(10, 90, 771, 161));
+        horizontalLayoutWidget->setGeometry(QRect(10, 120, 771, 202));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_2);
+
         logo = new QLabel(horizontalLayoutWidget);
         logo->setObjectName(QString::fromUtf8("logo"));
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(logo->sizePolicy().hasHeightForWidth());
-        logo->setSizePolicy(sizePolicy);
-        logo->setMinimumSize(QSize(150, 150));
-        logo->setMaximumSize(QSize(150, 150));
-        logo->setStyleSheet(QString::fromUtf8("border: 1px solid"));
+        logo->setStyleSheet(QString::fromUtf8(""));
+        logo->setPixmap(QPixmap(QString::fromUtf8(":/images/logo.png")));
 
         horizontalLayout_2->addWidget(logo);
 
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer_3);
+
         horizontalLayoutWidget_2 = new QWidget(centralwidget);
         horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(140, 260, 511, 211));
+        horizontalLayoutWidget_2->setGeometry(QRect(140, 340, 511, 211));
         horizontalLayout_3 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_4);
+
         loginForm = new QWidget(horizontalLayoutWidget_2);
         loginForm->setObjectName(QString::fromUtf8("loginForm"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(loginForm->sizePolicy().hasHeightForWidth());
         loginForm->setSizePolicy(sizePolicy);
         loginForm->setMinimumSize(QSize(350, 200));
@@ -115,7 +132,7 @@ public:
         verticalLayout = new QVBoxLayout(loginForm);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(35, 0, 35, -1);
-        verticalSpacer_4 = new QSpacerItem(20, 35, QSizePolicy::Minimum, QSizePolicy::Fixed);
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
         verticalLayout->addItem(verticalSpacer_4);
 
@@ -192,6 +209,10 @@ public:
 
         horizontalLayout_3->addWidget(loginForm);
 
+        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_5);
+
         topPanel = new QWidget(centralwidget);
         topPanel->setObjectName(QString::fromUtf8("topPanel"));
         topPanel->setGeometry(QRect(0, 0, 801, 71));
@@ -210,12 +231,20 @@ public:
         restartButton = new QPushButton(topPanel);
         restartButton->setObjectName(QString::fromUtf8("restartButton"));
         restartButton->setMinimumSize(QSize(55, 55));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/restart_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        restartButton->setIcon(icon);
+        restartButton->setIconSize(QSize(50, 50));
 
         horizontalLayout->addWidget(restartButton);
 
         shutdownButton = new QPushButton(topPanel);
         shutdownButton->setObjectName(QString::fromUtf8("shutdownButton"));
         shutdownButton->setMinimumSize(QSize(55, 55));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icons/shutdown_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        shutdownButton->setIcon(icon1);
+        shutdownButton->setIconSize(QSize(50, 50));
 
         horizontalLayout->addWidget(shutdownButton);
 
